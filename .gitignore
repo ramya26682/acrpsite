@@ -1,0 +1,9 @@
+vsgc-acrp/static
+vsgc-acrp/media
+acrpsite/__pycache__
+polls/__pycache__
+polls/migrations/__pycache__
+polls/templatetags/__pycache__
+acrpapp/__pycache__
+acrpapp/migrations/__pycache__
+acrpapp/templatetags/__pycache__
