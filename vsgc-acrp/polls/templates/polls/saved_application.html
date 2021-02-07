@@ -1,11 +1,23 @@
 {% load crispy_forms_tags %}
-<!DOCTYPE html>
-<html>
+{% include 'polls/messages.html' %}
+<html lang="en">
 <head>
    <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <title></title>
+    <script>
+            {% if messages %}
+                {% for message in messages %}
+                    alert(message);
+                {% endfor %}
+            {% endif %}
+        </script>
+<style>
+#read:read-only {
+  background-color: #ccc;
+}
+</style>
 </head>
 <body>
    <div class="container">
@@ -16,12 +28,15 @@
   Transportation Research Board, National Academies<br>
   Managed by: Virginia Space Grant Consortium</h4>
 </div>
+
+{% block content %}
   <form method="post" enctype="multipart/form-data" action="">
   {% csrf_token %} 
-  {% if form.stat == 'Evaluation Saved' %}
-  <div class="form-group col-sm-8">
+<div class="form-group col-sm-8" >
+
+
       <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
-      <i>{{ f.cheque_no|as_crispy_field }}</i>
+     <i> <p id ="read">{{ f.cheque_no|as_crispy_field }}</p></i>
     </div>
    <h2>PART I – APPLICANT PERSONAL INFORMATION</h2>
 <h6 style="color: red">Note: Upon submission, a link to the Reference and Faculty Advisor Commitment forms will be emailed to the selected individuals and must be submitted by May 29, 2020 to complete your application.</h6>
@@ -46,7 +61,7 @@
     <i>{{ f.Citizenship|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
-    <i>{{ f.Describe_type_and_status_if_visa_option_is_checked|as_crispy_field }}</i>
+    <i id ="visa">{{ f.Describe_type_and_status_if_visa_option_is_checked|as_crispy_field }}</i>
     </div>
     <div class="form-group col-sm-8">
     <i>{{ f.visa_expiration|as_crispy_field }}</i>
@@ -152,8 +167,7 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
   <div class="col-4">
      <i>{{ faculty.Ref2_Email|as_crispy_field }}</i>
    </div>
-</div>
-  <p>PART II – APPLICANT QUALIFICATIONS</p>
+  <h3>PART II – APPLICANT QUALIFICATIONS</h3>
   <table>
   <thead>
   <tr>
@@ -432,6 +446,7 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
       <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Interruptions_of_schooling|as_crispy_field }}</i>
     </div>
+  </div>
 <h6>
 <b>Transcripts:</b> The applicant will need to provide scanned official copies of transcripts for each higher education institution attended. These will be uploaded as part of the required PDF document noted in PART VI of this application.</h6><br>
 <h6>
@@ -439,10 +454,10 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 <table>
   <thead>
   <tr valign="top">
-    <td width="150"><h6>Name of Employer</h6></td>
-    <td width="150"><h6>Location</h6></td>
-    <td width="150"><h6>Dates</h6></td>
-    <td width="150"><h6>Nature of Work</h6></td>
+    <td><h6>Name of Employer</h6></td>
+    <td><h6>Location</h6></td>
+    <td><h6>Dates</h6></td>
+    <td><h6>Nature of Work</h6></td>
   </tr>
 </thead>
 <tbody>
@@ -724,11 +739,13 @@ Create one PDF document which should be saved as Last Name.First Name.GRA2020 (e
 3. Writing Sample<br>
 4. Transcripts<br>
 Please try to limit your file size to be no larger than 2 MB.</p>
-<div class="form-group col-sm-8">
-    <b><label for="Upload">Components of the Design Package in PDF Format.</label></b>
-    <i>{{ f.Upload|as_crispy_field }}</i>
-    <a href="/media/{{ f.Upload }}"> {{ f.Upload }} </a>
+  <div class="form-group col-sm-8">
+  <i>{{ f.Upload|as_crispy_field }}</i>
 </div>
+   <div class="form-group col-sm-8">
+    <b><label for="Upload">Components of the Design Package in PDF Format.</label></b>
+    <a href="/{{ f.Upload }}"> Full Design </a
+  </div>
 <h6>
 Use the save feature when subsequent data entry is required prior to submission. Use your nine-character ID as a pass code to access your application.</h6>
 <p>Notes:
@@ -747,7 +764,20 @@ Electronic application submissions are due by May 15, 2020.</p>
 
 <input type="submit" value=Submit>
 </form>
-{% endif %}
+<script>
+  <script>
+    function hideField() {
+      check = document.getElementsById("visa")[0].value;  
+      response = document.getElementById("put your id here");
+      if (check === "Open") {
+         response.style.display = "none";
+        }else{
+          response.style.display = "block";
+        }
+      }
+  </script>
+</script>
 </div>
 </body>
 </html>
+{% endblock %}

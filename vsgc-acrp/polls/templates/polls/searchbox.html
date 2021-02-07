@@ -24,7 +24,7 @@ th, td {
 <div class="text-md-center">
 <h5 style="text-align: center">Design Submissions for Approval</h5>
 </div>
-<form method="post" action="/acrpsite/acrp/evaluator/search"> 
+<form method="post" action="/graward/evaluator/search"> 
   {% csrf_token %} 
     {{ form.searchValue|as_crispy_field }}
   <input type="submit" value="Continue">
@@ -33,7 +33,7 @@ th, td {
 
   {% if Applicant.stat == 'Evaluation Saved' %}
   <table>
-      <td> Click here to modify your application --->>><a href="/acrpsite/acrp/evaluator/saved_application/{{Applicant.id}}/">{{ Applicant.App_FirstName }}</a></td>
+      <td> Click here to modify your application --->>><a href="/graward/evaluator/saved_application/{{Applicant.id}}/">{{ Applicant.App_FirstName }}</a></td>
        <!-- <td>{{ data.App_LastName }}</td>
        <td>{{ data.stat }}<br/></td> 
  -->  </table>
@@ -41,6 +41,9 @@ th, td {
 
  {% elif Applicant.stat == 'Evaluation Completed' %}<br><br>
  Sorry!You have already submitted the form.You can't make any changes.
+
+ {% else %}
+ <p>Please enter a valid cheque number</p>
 
 
  

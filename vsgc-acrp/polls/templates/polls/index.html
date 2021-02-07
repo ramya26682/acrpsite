@@ -1,5 +1,4 @@
 {% load crispy_forms_tags %}
-
 {% include 'polls/messages.html' %}
 <!doctype html>
 <html lang="en">
@@ -7,6 +6,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+  <script>
+            {% if messages %}
+                {% for message in messages %}
+                    alert(message);
+                {% endfor %}
+            {% endif %}
+        </script>
 <style>
  .asteriskField {
     display: none;
@@ -18,6 +25,7 @@ ul
 .jumbotron{
   text-align: center;
 }
+
 </style>
 </head>
 <body>
@@ -30,13 +38,38 @@ ul
   Managed by: Virginia Space Grant Consortium</h4>
 </div>
 {% block content %}
+<!--  {{ form.errors }}
+{{ form.non_field_errors }}
+
+ {% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %} -->
+
 	<form method="post" enctype="multipart/form-data" action="">
   {% csrf_token %} 
+  <!-- {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %} -->
   <div class="form-group col-sm-8">
       <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.cheque_no|as_crispy_field }}</i>
     </div>
-   <h2>PART I – APPLICANT PERSONAL INFORMATION</h2>
+   <h3>PART I – APPLICANT PERSONAL INFORMATION</h3>
   <h6 style="color: red">Note: Upon submission, a link to the Reference and Faculty Advisor Commitment forms will be emailed to the selected individuals and must be submitted by May 29, 2020 to complete your application.</h6>
 
 <div class="row">
@@ -138,7 +171,7 @@ ul
     </div>
     <div class="form-group col-sm-8">
       <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
-      <i>{{ form.Expected_Graduation|as_crispy_field }}</i>
+      <i id="datepicker">{{ form.Expected_Graduation|as_crispy_field }}</i>
     </div>
   </div>
 <h6>
@@ -190,9 +223,8 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
   <div class="col-4">
     <i>{{ email.Ref2_Email|as_crispy_field }}</i>
   </div>
-</div>
    <table>
-  <p>PART II – APPLICANT QUALIFICATIONS</p>
+  <h3>PART II – APPLICANT QUALIFICATIONS</h3>
   <thead>
   <tr>
     <th><h6>College / University</h6></th>
@@ -208,259 +240,259 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
   <tr valign="top">
 {% for checkbox in form.clg_or_univ_1 %}
     <label class="col-md-1">
-           <td width="96"> {{ checkbox.tag }}</td>
+           <td width="80"> {{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Major_1 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Location_1 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Dates_Attended_1 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.GPA_1 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Degree_1 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.degree_expected_1 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 </tr>
 <tr valign="top">
 {% for checkbox in form.clg_or_univ_2 %}
     <label class="col-md-1">
-           <td width="96">{{ checkbox.tag }}</td>
+           <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Major_2 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Location_2 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Dates_Attended_2 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.GPA_2 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Degree_2 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.degree_expected_2 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 </tr>
 <tr valign="top">
 {% for checkbox in form.clg_or_univ_3 %}
     <label class="col-md-1">
-           <td width="96"> {{ checkbox.tag }}</td>
+           <td width="80"> {{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Major_3 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Location_3 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Dates_Attended_3 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.GPA_3 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Degree_3 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.degree_expected_3 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 </tr>
 <tr valign="top">
 {% for checkbox in form.clg_or_univ_4 %}
     <label class="col-md-1">
-           <td width="96">{{ checkbox.tag }}</td>
+           <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Major_4 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Location_4 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Dates_Attended_4 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.GPA_4 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Degree_4 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.degree_expected_4 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 </tr>
 <tr valign="top">
 {% for checkbox in form.clg_or_univ_5 %}
     <label class="col-md-1">
-           <td width="96">{{ checkbox.tag }}</td>
+           <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Major_5 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Location_5 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Dates_Attended_5 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.GPA_5 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Degree_5 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.degree_expected_5 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 </tr>
 <tr valign="top">
 {% for checkbox in form.clg_or_univ_6 %}
     <label class="col-md-1">
-           <td width="96">{{ checkbox.tag }}</td>
+           <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Major_6 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Location_6 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Dates_Attended_6 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.GPA_6 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Degree_6 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.degree_expected_6 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 </tr>
 <tr valign="top">
 {% for checkbox in form.clg_or_univ_7 %}
     <label class="col-md-1">
-           <td width="96"> {{ checkbox.tag }}</td>
+           <td width="80"> {{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Major_7 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Location_7 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Dates_Attended_7 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.GPA_7 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Degree_7 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.degree_expected_7 %}
     <label class="col-md-1">
-            <td width="96">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 </tr>
@@ -470,6 +502,7 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
       <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ form.Interruptions_of_schooling|as_crispy_field }}</i>
     </div>
+  </div>
 
 <h6>
 <b>Transcripts:</b> The applicant will need to provide scanned official copies of transcripts for each higher education institution attended. These will be uploaded as part of the required PDF document noted in PART VI of this application.</h6><br>
@@ -478,32 +511,32 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 <table>
   <thead>
   <tr valign="top">
-    <td width="150"><h6>Name of Employer</h6></td>
-    <td width="150"><h6>Location</h6></td>
-    <td width="150"><h6>Dates</h6></td>
-    <td width="150"><h6>Nature of Work</h6></td>
+    <td><h6>Name of Employer</h6></td>
+    <td><h6>Location</h6></td>
+    <td><h6>Dates</h6></td>
+    <td><h6>Nature of Work</h6></td>
   </tr>
 </thead>
 <tbody>
   <tr valign="top">
 {% for checkbox in form.Emp1_Name %}
     <label class="col-md-1">
-           <td width="150"> {{ checkbox.tag }}</td>
+           <td width="80"> {{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Emp1_Location %}
     <label class="col-md-1">
-            <td width="150">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Emp1_Dates %}
     <label class="col-md-1">
-            <td width="150">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Emp1_Nature_of_work %}
     <label class="col-md-1">
-            <td width="150">{{ checkbox.tag }}</td>
+            <td width="80">{{ checkbox.tag }}</td>
     </label>
 {% endfor %} 
 </tr>
@@ -511,7 +544,7 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
 <tr valign="top">
 {% for checkbox in form.Emp2_Name %}
     <label class="col-md-1">
-           <td width="150"> {{ checkbox.tag }}</td>
+           <td width="80"> {{ checkbox.tag }}</td>
     </label>
 {% endfor %}
 {% for checkbox in form.Emp2_Location %}
@@ -743,11 +776,11 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
       <i>{{ email.Ref3_Email|as_crispy_field }}</i>
     </div>
 
-<h4>PART V – COVER PAGE WITH CERTIFICATIONS</h4><br>
+<h3>PART V – COVER PAGE WITH CERTIFICATIONS</h3><br>
 <p>
 Download the Cover Page with Certifications form. Complete the applicant portion of the form and sign and date this section. Have your university Sponsored Programs Office complete the bottom portion of the form and sign and date it. The signed Cover Page with Certification will be submitted as part of the PDF document you will submit in Part VI of the application. Submit the signed original with the hard copy of your application. The hard copy of the application must be received no later than May 22, 2020.</p>
 
-<h4>PART VI – SUBMISSION OF REQUIRED APPLICATION DOCUMENTS</h4>
+<h3>PART VI – SUBMISSION OF REQUIRED APPLICATION DOCUMENTS</h3>
 <p>
 Create one PDF document which should be saved as Last Name.First Name.GRA2020 (example: Smith.John.GRA2020). Please do not use spaces in your file name. These documents should be provided as one PDF document with items in the order below:<br>
 1. Cover Page with Certifications<br>
@@ -774,11 +807,21 @@ Electronic application submissions are due by May 15, 2020.</p>
   </div>
 </div>
     <input type="submit" value=Submit>
-    {{ form.errors }}
-{{ form.non_field_errors }}
+
 </form>
 <!-- <button type="submit" class="btn btn-primary btn-lg">Submit</button> -->
 </body>
 </div>
+ <script>
+  $(function() {
+    $( ".datepicker" ).datepicker({
+      changeMonth: true,
+      changeYear: true,
+      yearRange: "1900:2012",
+      // You can put more options here.
+
+    });
+  });
+  </script>
 </html>
 {% endblock %}

@@ -631,4 +631,3 @@ def reedit(request):
         return render(request,'acrpapp/reedit.html',{'dApps' : daDb,'dType':daType})
     else:
         print('no Permission')
-

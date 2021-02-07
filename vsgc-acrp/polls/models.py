@@ -19,7 +19,7 @@ class Applicant(models.Model):
              ('Permanent Resident','Permanent Resident'),
              ('Student Visa','Student Visa')
          ]
-    Citizenship=models.CharField(max_length=100,choices=citizen,default="US citizen",blank=True)
+    Citizenship=models.CharField(max_length=50,choices=citizen,default="US citizen",null=True,blank=True)
     Describe_type_and_status_if_visa_option_is_checked=models.CharField(max_length=264,default="",blank=True)
     visa_expiration=models.DateField(max_length=10,blank=True,null=True)
     gender=[
@@ -151,7 +151,7 @@ class Applicant(models.Model):
     Ref3_Title=models.CharField(max_length=128,blank=True)
     Ref3_Inst=models.CharField(max_length=128,blank=True)
     Ref3_Phone=models.CharField(max_length=128,blank=True)
-    Upload=models.FileField(max_length=256,upload_to='upload/',blank=True)
+    Upload=models.FileField(max_length=256,upload_to='media/upload/',blank=True)
 
 
     RADIOS = [

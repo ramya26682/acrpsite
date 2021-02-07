@@ -4,12 +4,13 @@ from .models import Applicant,Faculty,Recommendation_fields,user_profile
 from django.conf import settings
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
 
 Ethni =(
 	    ('American Indian or Alaskan Native: origin in any of the original peoples of North America', 'American Indian or Alaskan Native: origin in any of the original peoples of North America'),
 	    ('Black: origin in any of the black racial groups', 'Black: origin in any of the black racial groups'),
 	    ('Hispanic: Mexican, Puerto Rican, Central or South America, or other Spanish culture or origin, regardless of race', 'Hispanic: Mexican, Puerto Rican, Central or South America, or other Spanish culture or origin, regardless of race'),
-	    ('I found it on the VSGC/ACRP website.', 'I found it on the VSGC/ACRP website.'),
 	    ('Asian or Pacific Islander: origin in any of the original peoples of the Far East, Southeast Asia, or the Pacific Islands. Includes China, Japan, Korea, the Philippine Islands, Samoa, and the Indian Subcontinent', 'Asian or Pacific Islander: origin in any of the original peoples of the Far East, Southeast Asia, or the Pacific Islands. Includes China, Japan, Korea, the Philippine Islands, Samoa, and the Indian Subcontinent'),
 	    ('White: origin in any of the original peoples of Europe, North Africa, or the Middle East', 'White: origin in any of the original peoples of Europe, North Africa, or the Middle East'),
 	   	)
@@ -17,9 +18,10 @@ Ethni =(
 class ApplicantForm(forms.ModelForm):
 	Ethnicity= forms.MultipleChoiceField(label='Ethnicity (optional):',choices=Ethni, widget=forms.CheckboxSelectMultiple(), required=False)
 	Upload = forms.FileField(label='Upload File (Single PDF file):', required=False)
+	# Expected_Graduation = forms.CharField(widget=CalendarWidget)
 	dob=forms.DateField(label='Date of birth', required=False,widget=forms.TextInput(attrs={'placeholder':'(example: 05/31/70)'}))
-	Expected_Graduation=forms.DateField(input_formats=settings.DATE_INPUT_FORMATS, required=False)
-	visa_expiration=forms.DateField(widget=forms.TextInput(attrs={'placeholder':'(example: 05/31/70)'}))
+	# Expected_Graduation=forms.DateField(input_formats=settings.DATE_INPUT_FORMATS, required=False,widget=forms.TextInput(attrs={'class':'datepicker',}))
+	visa_expiration=forms.DateField(widget=forms.TextInput(attrs={'placeholder':'(example: 05/31/70)'}),required=False)
 
 
 
@@ -46,7 +48,7 @@ class ApplicantForm(forms.ModelForm):
 		'Gender':'Gender Identity (optional):','Ethnicity':'Ethnicity (optional):','Mailing_Address':'Mailing Address:','Mailing_City':'City:','Mailing_State':'State:',
 		'Mailing_Zip_Code':'Zip Code:','Current_phone':'Current Phone:','Permanent_Home_Address':'Permanent Home Address:','Permanent_City':'City:','Permanent_State':'State:',
 		'Permanent_Zip_Code':'Zip Code:','Permanent_Home_phone':'Permanent Home Phone:','Email':'Email:','clg_or_univ_Enrolled':'College or University currently enrolled:','Major_Field':'Major Field:',
-		'Degree_objective':'Degree Objective:','Expected_Graduation':'Expected Month and Year of graduation:','Ref1_Name':'Name:','Ref1_Title':'Title:','Ref1_Dept':'Department:',
+		'Degree_objective':'Degree Objective:','Expected_Graduation':'Expected Year of graduation:','Ref1_Name':'Name:','Ref1_Title':'Title:','Ref1_Dept':'Department:',
 		'Ref1_Inst':'Institutional Affiliation:','Ref1_Phone':'Phone:','Ref2_Name':'Name:','Ref2_Title':'Title:','Ref2_Dept':'Department:',
 		'Ref2_Inst':'Institutional Affiliation:','Ref2_Phone':'Phone:','clg_or_univ':'College / University','Location':'Location','Major_Field':'Major Field',
 		'Dates_Attended':'Dates Attended','GPA':'GPA','Degree':'Degree','Date_degree_expected':'Date degree awarded / expected','Interruptions_of_schooling':'Please explain any interruption(s) of schooling, i.e., military training, illness, etc.):',
@@ -63,12 +65,13 @@ class ApplicantForm(forms.ModelForm):
 
 		widgets={
 				'Describe_type_and_status_if_visa_option_is_checked':forms.Textarea(attrs={'rows':3, 'cols':6}),
-				'Citizenship' :forms.RadioSelect(),
 				'Interruptions_of_schooling':forms.Textarea(attrs={'rows':3, 'cols':6}),
 				'Prof_exp_Notes':forms.Textarea(attrs={'rows':3, 'cols':6}),
 				'Awards_Notes':forms.Textarea(attrs={'rows':3, 'cols':6}),
 				'Carrer_goals':forms.Textarea(attrs={'rows':3, 'cols':6}),
 				'stat' :forms.RadioSelect(),
+				'Expected_Graduation': DateInput(),
+
 				}
 		error_messages  = {
         'category_name': {
@@ -88,8 +91,7 @@ class ApplicantForm(forms.ModelForm):
 		if stat == 'Evaluation Saved':
 			self.cleaned_data
 		else:
-			self.fields_required(["App_FirstName","App_MiddleName",'App_LastName','dob','place_of_birth','Citizenship','Describe_type_and_status_if_visa_option_is_checked',
-        'visa_expiration','Gender','Ethnicity','Mailing_Address','Mailing_City','Mailing_State','Mailing_Zip_Code','Current_phone','Permanent_Home_Address',
+			self.fields_required(["App_FirstName","App_MiddleName",'App_LastName','dob','place_of_birth','Citizenship','Gender','Ethnicity','Mailing_Address','Mailing_City','Mailing_State','Mailing_Zip_Code','Current_phone','Permanent_Home_Address',
         'Permanent_City','Permanent_State','Permanent_Zip_Code','Permanent_Home_phone','Email','clg_or_univ_Enrolled','Major_Field','Degree_objective','Expected_Graduation',
         'Ref1_Name','Ref1_Title','Ref1_Dept','Ref1_Inst','Ref1_Phone','Ref2_Name','Ref2_Title','Ref2_Dept','Ref2_Inst','Ref2_Phone','clg_or_univ_1','Location_1',
         'Major_1','Dates_Attended_1','GPA_1','Degree_1','degree_expected_1','Emp1_Name','Emp1_Location','Emp1_Dates','Emp1_Nature_of_work',

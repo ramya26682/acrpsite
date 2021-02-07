@@ -40,7 +40,7 @@ th, td {
     {% if j.stat == 'Pending' %}
     {% for m,k in j.items %}
     <tr>
-      <td><a href="/acrpsite/acrp/EvaluateSubmissions_detail/{{k.id}}/">{{ k.App_FirstName }}</a></td>
+      <td><a href="/graward/EvaluateSubmissions_detail/{{k.id}}/">{{ k.App_FirstName }}</a></td>
       <td>{{ k.Degree_objective }}</td>
       <td>{{ k.Major_Field }}</td>
       <td>{{ k.clg_or_univ_Enrolled }}</td>
@@ -50,7 +50,7 @@ th, td {
     {% else %}
      {% for m,k in j.items %}
      <tr>
-      <td><a href="/acrpsite/acrp/EvaluateSubmissions_detail/{{k.id}}/">{{ k.App_FirstName }}</a></td>
+      <td><a href="/graward/EvaluateSubmissions_detail/{{k.id}}/">{{ k.App_FirstName }}</a></td>
       <td>{{ k.Degree_objective }}</td>
       <td>{{ k.Major_Field }}</td>
       <td>{{ k.clg_or_univ_Enrolled }}</td>

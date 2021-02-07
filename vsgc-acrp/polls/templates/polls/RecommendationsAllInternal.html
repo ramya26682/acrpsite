@@ -38,9 +38,9 @@ th, td {
 <tr>
   {% for value in saved %}
     <td>{{ value.App_FirstName }} {{value.App_LastName }}</td>
-    <td><a href="http://127.0.0.1:8000/acrpsite/acrp/recom/{{ value.cheque_no }}/{{ 1 }}">{{ value.Ref1_Name }}</a> </td>
-    <td><a href="http://127.0.0.1:8000/acrpsite/acrp/recom/{{ value.cheque_no }}/{{ 2 }}">{{ value.Ref2_Name }}</td>
-    <td><a href="http://127.0.0.1:8000/acrpsite/acrp/recom/{{ value.cheque_no }}/{{ 3 }}">{{ value.Ref3_Name }}</td>
+    <td><a href="http://127.0.0.1:8000/graward/recom/{{ value.cheque_no }}/{{ 1 }}">{{ value.Ref1_Name }}</a> </td>
+    <td><a href="http://127.0.0.1:8000/graward/recom/{{ value.cheque_no }}/{{ 2 }}">{{ value.Ref2_Name }}</td>
+    <td><a href="http://127.0.0.1:8000/graward/recom/{{ value.cheque_no }}/{{ 3 }}">{{ value.Ref3_Name }}</td>
 
 </tr>
 {% endfor %}

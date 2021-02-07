@@ -21,8 +21,8 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('acrpapp.urls')),
-    path('acrpapp/', include('acrpapp.urls')),
-    path('acrpsite/', include('polls.urls')),
+    path('acrpsite/', include('acrpapp.urls')),
+    path('graward/', include('polls.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
     #path('media/',include('')),
 ]

@@ -24,7 +24,7 @@ th, td {
 <div class="text-md-center">
 <h5 style="text-align: center">Evaluated Submissions</h5>
 </div>
-<form method="post" action="/acrp/evaluator/submit"> 
+<form method="post" action="/graward/evaluator/submit"> 
   {% csrf_token %} 
     {{ form.searchValue|as_crispy_field }}
   <input type="submit" value="Continue">
@@ -33,15 +33,16 @@ th, td {
 
   {% if Applicant.stat == 'Evaluation Completed' %}
   <table>
-      <td>Please click here to view your application---> <a href="/acrp/evaluator/submit_application/{{Applicant.id}}/">{{ Applicant.App_FirstName }}</a></td>
+      <td>Please click here to view your application---> <a href="/graward/evaluator/submit_application/{{Applicant.id}}/">{{ Applicant.App_FirstName }}</a></td>
   </table>
  <br>
 
  {% elif Applicant.stat == 'Evaluation Saved' %}<br><br>
- Sorry! You haven't submitted the form please click <a href="/acrp/evaluator/search">Click Here</a> To submit your form
+ Sorry! You haven't submitted the form please click <a href="/graward/evaluator/search"> Here</a> To submit your form
  
- {% else  %}
- <p>Please enter a valid </p>
+{% else %}
+ <p>Please enter a valid cheque number</p>
+
  {% endif %}
 
 </div>

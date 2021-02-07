@@ -18,12 +18,19 @@
 </div>
   <form method="post" enctype="multipart/form-data" action="">
   {% csrf_token %} 
+<!--       {% if messages %}
+            <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+        {% endif %} -->
   {% if form.stat == 'Evaluation Completed' %}
   <div class="form-group col-sm-8">
       <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.cheque_no|as_crispy_field }}</i>
     </div>
-   <h2>PART I – APPLICANT PERSONAL INFORMATION</h2>
+   <h3>PART I – APPLICANT PERSONAL INFORMATION</h3>
 <h6 style="color: red">Note: Upon submission, a link to the Reference and Faculty Advisor Commitment forms will be emailed to the selected individuals and must be submitted by May 29, 2020 to complete your application.</h6>
   
   <div class="row">
@@ -152,8 +159,7 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
   <div class="col-4">
      <i>{{ faculty.Ref2_Email|as_crispy_field }}</i>
    </div>
-</div>
-  <p>PART II – APPLICANT QUALIFICATIONS</p>
+  <h3>PART II – APPLICANT QUALIFICATIONS</h3>
   <table>
   <thead>
   <tr>
@@ -432,6 +438,7 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
       <!-- <b>{{ form.title.label_tag.label_tag }}</b> -->
       <i>{{ f.Interruptions_of_schooling|as_crispy_field }}</i>
     </div>
+  </div>
 <h6>
 <b>Transcripts:</b> The applicant will need to provide scanned official copies of transcripts for each higher education institution attended. These will be uploaded as part of the required PDF document noted in PART VI of this application.</h6><br>
 <h6>
@@ -712,11 +719,11 @@ Note: Upon submission, a link to the Reference and Faculty Advisor Commitment fo
       <i>{{ faculty.Ref3_Email|as_crispy_field }}</i>
     </div>
 
-<h4>PART V – COVER PAGE WITH CERTIFICATIONS</h4><br>
+<h3>PART V – COVER PAGE WITH CERTIFICATIONS</h3><br>
 <p>
 Download the Cover Page with Certifications form. Complete the applicant portion of the form and sign and date this section. Have your university Sponsored Programs Office complete the bottom portion of the form and sign and date it. The signed Cover Page with Certification will be submitted as part of the PDF document you will submit in Part VI of the application. Submit the signed original with the hard copy of your application. The hard copy of the application must be received no later than May 22, 2020.</p>
 
-<h4>PART VI – SUBMISSION OF REQUIRED APPLICATION DOCUMENTS</h4>
+<h3>PART VI – SUBMISSION OF REQUIRED APPLICATION DOCUMENTS</h3>
 <p>
 Create one PDF document which should be saved as Last Name.First Name.GRA2020 (example: Smith.John.GRA2020). Please do not use spaces in your file name. These documents should be provided as one PDF document with items in the order below:<br>
 1. Cover Page with Certifications<br>
