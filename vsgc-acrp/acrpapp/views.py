@@ -226,7 +226,7 @@ def Applicantdetail(request,ekey):
             f = updated_form.save()
     else:
         f=ApplicantForm(instance = saved)
-        return render(request,'acrpapp/Applicantdetail.html',{'form':f})
+        return render(request,'acrpapp/ApplicantDetail.html',{'form':f})
 
 
 def getPermissions(request):
@@ -631,3 +631,4 @@ def reedit(request):
         return render(request,'acrpapp/reedit.html',{'dApps' : daDb,'dType':daType})
     else:
         print('no Permission')
+

@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'bfo%v50iwa8z&si6m4f)!2^mwhhp!vrgcie*qzozn0oug=zvxb'
 TEMPLATE_DIR = os.path.join(BASE_DIR,'templates')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['vsgcapps.odu.edu','128.82.98.60','[::1]','127.0.0.1']
 
@@ -79,27 +79,27 @@ WSGI_APPLICATION = 'acrpsite.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': "acrpsite",
-#         'USER': 'rbond001',#'zubair',
-#         'PASSWORD':'J8e4MYjS7365eREn',# 'sahil92',
-#         'HOST': 'localhost',
-#         'PORT': '3306',
-#     }
-# }
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': "vsgc",
-        'USER': 'root',#'zubair',
-        'PASSWORD':'',# 'sahil92',
-        'HOST': '127.0.0.1',
+        'NAME': "acrpsite",
+        'USER': 'rbond001',#'zubair',
+        'PASSWORD':'J8e4MYjS7365eREn',# 'sahil92',
+        'HOST': 'localhost',
         'PORT': '3306',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': "vsgcacrp",
+#         'USER': 'root',#'zubair',
+#         'PASSWORD':'',# 'sahil92',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#     }
+# }
 
 
 # Password validation
